@@ -1,28 +1,30 @@
 import React, { useMemo, useState } from "react";
-const gridY = 4;
-return (
-<svg viewBox={`0 0 ${width} ${height}`} className="svg">
-{/* grid */}
-{Array.from({ length: gridY }).map((_, i) => (
-<line key={i} x1="0" x2={width} y1={(i+1)*(height/(gridY+1))} y2={(i+1)*(height/(gridY+1))} className="grid" />
-))}
-{/* lines */}
-{path2 && <path d={path2} className="line line--secondary" />}
-<path d={path1} className="line" />
-{/* legend */}
-<g className="legend" transform="translate(8,8)">
-<rect className="legend__swatch" x="0" y="0" width="12" height="3" rx="2" />
-<text x="18" y="3" alignmentBaseline="middle">Revenue</text>
-{secondary && (
-<>
-<rect className="legend__swatch secondary" x="90" y="0" width="12" height="3" rx="2" />
-<text x="108" y="3" alignmentBaseline="middle">Cost</text>
-</>
-)}
-</g>
-</svg>
-);
 
+function LineChart({ width, height, path1, path2, secondary }) {
+	const gridY = 4;
+	return (
+		<svg viewBox={`0 0 ${width} ${height}`} className="svg">
+			{/* grid */}
+			{Array.from({ length: gridY }).map((_, i) => (
+				<line key={i} x1="0" x2={width} y1={(i+1)*(height/(gridY+1))} y2={(i+1)*(height/(gridY+1))} className="grid" />
+			))}
+			{/* lines */}
+			{path2 && <path d={path2} className="line line--secondary" />}
+			<path d={path1} className="line" />
+			{/* legend */}
+			<g className="legend" transform="translate(8,8)">
+				<rect className="legend__swatch" x="0" y="0" width="12" height="3" rx="2" />
+				<text x="18" y="3" alignmentBaseline="middle">Revenue</text>
+				{secondary && (
+					<>
+						<rect className="legend__swatch secondary" x="90" y="0" width="12" height="3" rx="2" />
+						<text x="108" y="3" alignmentBaseline="middle">Cost</text>
+					</>
+				)}
+			</g>
+		</svg>
+	);
+}
 
 
 function BarsChart({ data }) {
